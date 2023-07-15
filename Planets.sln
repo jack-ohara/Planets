@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "infra\src\Infra\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Api", "src\Planets.Api\Planets.Api.csproj", "{69773CC3-33AC-4932-80B5-66C9941D6166}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.DataAccessLayer.Tests", "test\Planets.DataAccessLayer.Tests\Planets.DataAccessLayer.Tests.csproj", "{04251136-7FEE-4823-A9C6-E1B1E8BFA838}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{69773CC3-33AC-4932-80B5-66C9941D6166}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69773CC3-33AC-4932-80B5-66C9941D6166}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69773CC3-33AC-4932-80B5-66C9941D6166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04251136-7FEE-4823-A9C6-E1B1E8BFA838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04251136-7FEE-4823-A9C6-E1B1E8BFA838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04251136-7FEE-4823-A9C6-E1B1E8BFA838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04251136-7FEE-4823-A9C6-E1B1E8BFA838}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +64,6 @@ Global
 		{E3595DFB-E9F0-4960-A9EB-8831D7BC97E5} = {5F277166-8CE7-4E01-B098-3AC631FDAD76}
 		{14F175C3-2F74-4F7D-B6AD-BFFDEA6AFE56} = {20B0531A-0AAE-41F8-8A0B-EF7DCD30D3F0}
 		{69773CC3-33AC-4932-80B5-66C9941D6166} = {5F277166-8CE7-4E01-B098-3AC631FDAD76}
+		{04251136-7FEE-4823-A9C6-E1B1E8BFA838} = {4EFED700-E768-4C6C-9AEA-6934ADBBE0E3}
 	EndGlobalSection
 EndGlobal

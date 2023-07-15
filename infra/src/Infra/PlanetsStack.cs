@@ -11,21 +11,6 @@ namespace Infra
     {
         internal PlanetsStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
-            var bundlingOptions = new BundlingOptions()
-            {
-                Image = Runtime.DOTNET_6.BundlingImage,
-                User = "root",
-                OutputType = BundlingOutput.ARCHIVED,
-                Command = new string[]{
-                    "/bin/sh",
-                    "-c",
-                    " dotnet tool install -g Amazon.Lambda.Tools"+
-                    " && cd Planets.Api"+
-                    " && dotnet build"+
-                    " && dotnet lambda package --output-package /asset-output/function.zip"
-                }
-            };
-
             var lambdaFunctionOne = new Function(this, "planets-api", new FunctionProps
             {
                 Runtime = Runtime.DOTNET_6,
@@ -34,7 +19,20 @@ namespace Infra
                 Handler = "Planets.Api",
                 Code = Code.FromAsset("../src/", new Amazon.CDK.AWS.S3.Assets.AssetOptions
                 {
-                    Bundling = bundlingOptions
+                    Bundling = new BundlingOptions()
+                    {
+                        Image = Runtime.DOTNET_6.BundlingImage,
+                        User = "root",
+                        OutputType = BundlingOutput.ARCHIVED,
+                        Command = new string[]{
+                            "/bin/sh",
+                            "-c",
+                            " dotnet tool install -g Amazon.Lambda.Tools"+
+                            " && cd Planets.Api"+
+                            " && dotnet build"+
+                            " && dotnet lambda package --output-package /asset-output/function.zip"
+                        }
+                    }
                 }),
             });
 
