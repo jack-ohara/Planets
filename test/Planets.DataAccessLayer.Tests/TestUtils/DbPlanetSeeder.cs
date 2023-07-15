@@ -16,8 +16,9 @@ public static class DbPlanetSeeder
             {
                 ["pk"] = "planet/list",
                 ["sk"] = planet.ID,
+                ["ID"] = planet.ID,
                 ["Name"] = planet.Name,
-                ["ImageURL"] = planet.ImageUrl,
+                ["ImageUrl"] = planet.ImageUrl,
                 ["DistanceToSun"] = new Document
                 {
                     ["Value"] = planet.DistanceToSun.Value,
