@@ -31,5 +31,19 @@ public class PlanetRepositoryTests : IClassFixture<DynamoDBTestFixture>
 
         result.Should().BeEquivalentTo(planets);
     }
+
+    [Fact]
+    public async Task GetPlanet_ShouldReturnAllInfoForPlanetAsync()
+    {
+        var planet = new PlanetBuilder().Build();
+
+        await DbPlanetSeeder.SeedPlanets(fixture.Db, fixture.TableName, new[] { planet });
+
+        var repo = new PlanetRepository(fixture.Db, fixture.TableName);
+
+        var result = await repo.GetPlanet(planet.ID);
+
+        result.Should().BeSameAs(planet);
+    }
 }
 
