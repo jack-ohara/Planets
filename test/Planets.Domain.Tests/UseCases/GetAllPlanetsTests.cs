@@ -1,5 +1,7 @@
 ﻿using Moq;
 using Planets.DataAccessLayer.Repositories;
+using Planets.Domain.UseCases;
+using FluentAssertions;
 
 namespace Planets.Domain.Tests.UseCases
 {

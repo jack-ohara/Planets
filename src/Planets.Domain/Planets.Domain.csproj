@@ -14,4 +14,7 @@
     <Folder Include="Models\" />
     <Folder Include="UseCases\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Planets.DataAccessLayer\Planets.DataAccessLayer.csproj" />
+  </ItemGroup>
 </Project>
