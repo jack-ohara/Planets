@@ -31,11 +31,11 @@ public class PlanetRepository : IPlanetRepository
         return planets;
     }
 
-    public async Task<Planet> GetPlanet(string id)
+    public async Task<Planet?> GetPlanet(string id)
     {
         var result = await _table.GetItemAsync(new Dictionary<string, DynamoDBEntry> { ["pk"] = "planet/list", ["sk"] = id });
 
-        return MapToModel(result);
+        return result is null ? null : MapToModel(result);
     }
 
     private Planet MapToModel(Document document)
