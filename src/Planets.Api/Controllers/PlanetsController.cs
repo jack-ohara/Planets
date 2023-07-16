@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Planets.Api.Models;
 using Planets.Domain.Models;
+using Planets.Domain.UseCases;
 
 namespace Planets.Api.Controllers;
 
@@ -8,17 +9,28 @@ namespace Planets.Api.Controllers;
 [Route("[controller]")]
 public class PlanetsController : ControllerBase
 {
-    private readonly ILogger<PlanetsController> _logger;
+    private readonly IGetAllPlanets getAllPlanets;
+    private readonly ILogger<PlanetsController> logger;
 
-    public PlanetsController(ILogger<PlanetsController> logger)
+    public PlanetsController(
+        IGetAllPlanets getAllPlanets,
+        ILogger<PlanetsController> logger
+    )
     {
-        _logger = logger;
+        this.getAllPlanets = getAllPlanets;
+        this.logger = logger;
     }
 
     [HttpGet(Name = "GetPlanets")]
-    public IEnumerable<DisplayPlanet> Get()
+    public async Task<IEnumerable<DisplayPlanet>> Get()
     {
-        return new[] { "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
+        var allPlanets = await getAllPlanets.Execute();
+
+        return allPlanets.Select(planet => new DisplayPlanet
+        {
+            ID = planet.ID,
+            Name = planet.Name
+        });
     }
 
     [HttpGet("{id}", Name = "GetPlanet")]

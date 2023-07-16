@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Planets.Api.Controllers;
 using Planets.Domain.Models;
@@ -49,12 +50,38 @@ namespace Planets.Api.UnitTests.Controllers
                 },
             };
 
-            var controller = new PlanetsController(mockUseCase);
+            var controller = new PlanetsController(mockUseCase.Object, Mock.Of<ILogger<PlanetsController>>());
 
-            var result = controller.Get();
+            var result = await controller.Get();
 
             result.Should().BeEquivalentTo(expected);
         }
+
+        [Fact]
+        public async Task GetPlanet_WithAValidID_ShouldReturnTheExpectedPlanet()
+        {
+            var planet = new Planet
+            {
+                ID = "planet-1",
+                Name = "Planet 1",
+                ImageUrl = "https://space-images.com/Planet-1",
+                DistanceToSunDisplayValue = "123 km",
+                MassDisplayValue = "456 kg",
+                DiameterDisplayValue = "789 km",
+            };
+
+            var mockUseCase = new Mock<IGetPlanet>();
+            mockUseCase.Setup(x => x.Execute(It.IsAny<string>())).ReturnsAsync(planet);
+
+            var controller = new PlanetsController(
+                Mock.Of<IGetAllPlanets>(),
+                mockUseCase.Object,
+                Mock.Of<ILogger<PlanetsController>>()
+            );
+
+            var result = controller.GetPlanet("planet-1");
+
+            result.Should().BeEquivalentTo(planet);
+        }
     }
 }
-
