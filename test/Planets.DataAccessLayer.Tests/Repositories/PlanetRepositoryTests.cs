@@ -58,6 +58,7 @@ public class PlanetRepositoryTests : IClassFixture<DynamoDBTestFixture>, IAsyncL
         result.Should().BeEquivalentTo(planets);
     }
 
+    // What happens if the id isn't present?? Need a test
     [Fact]
     public async Task GetPlanet_ShouldReturnAllInfoForPlanetAsync()
     {

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using FluentAssertions;
 using Moq;
 using Planets.DataAccessLayer.Repositories;
+using Planets.Domain.UseCases;
 
 namespace Planets.Domain.Tests.UseCases
 {
@@ -45,9 +46,9 @@ namespace Planets.Domain.Tests.UseCases
                 DiameterDisplayValue = "789 km",
             };
 
-            var useCase = new GetPlanet(mockPlanetsRepository);
+            var useCase = new GetPlanet(mockPlanetsRepository.Object);
 
-            var result = await useCase.Execute();
+            var result = await useCase.Execute(id);
 
             result.Should().BeEquivalentTo(expected);
         }
