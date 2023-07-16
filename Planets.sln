@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.DataAccessLayer.Int
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Domain.UnitTests", "test\Planets.Domain.Tests\Planets.Domain.UnitTests.csproj", "{4B4ADCCF-1A9F-4457-A13F-314FDD838FDE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Api.UnitTests", "test\Planets.Api.UnitTests\Planets.Api.UnitTests.csproj", "{D656E9EC-C565-4B10-A3BC-BE0F0287CD6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{4B4ADCCF-1A9F-4457-A13F-314FDD838FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B4ADCCF-1A9F-4457-A13F-314FDD838FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B4ADCCF-1A9F-4457-A13F-314FDD838FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D656E9EC-C565-4B10-A3BC-BE0F0287CD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D656E9EC-C565-4B10-A3BC-BE0F0287CD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D656E9EC-C565-4B10-A3BC-BE0F0287CD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D656E9EC-C565-4B10-A3BC-BE0F0287CD6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +71,6 @@ Global
 		{69773CC3-33AC-4932-80B5-66C9941D6166} = {5F277166-8CE7-4E01-B098-3AC631FDAD76}
 		{04251136-7FEE-4823-A9C6-E1B1E8BFA838} = {4EFED700-E768-4C6C-9AEA-6934ADBBE0E3}
 		{4B4ADCCF-1A9F-4457-A13F-314FDD838FDE} = {4EFED700-E768-4C6C-9AEA-6934ADBBE0E3}
+		{D656E9EC-C565-4B10-A3BC-BE0F0287CD6D} = {4EFED700-E768-4C6C-9AEA-6934ADBBE0E3}
 	EndGlobalSection
 EndGlobal

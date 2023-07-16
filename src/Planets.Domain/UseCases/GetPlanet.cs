@@ -3,7 +3,7 @@ using Planets.Domain.Models;
 
 namespace Planets.Domain.UseCases
 {
-	public class GetPlanet
+    public class GetPlanet : IGetPlanet
     {
         private readonly IPlanetRepository planetRepository;
 
@@ -27,6 +27,6 @@ namespace Planets.Domain.UseCases
                 AdditionalInfo = planet.AdditionalInfo
             };
         }
-	}
+    }
 }
 

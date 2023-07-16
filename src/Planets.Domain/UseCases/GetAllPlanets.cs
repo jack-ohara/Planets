@@ -3,12 +3,12 @@ using Planets.Domain.Models;
 
 namespace Planets.Domain.UseCases
 {
-	public class GetAllPlanets
-	{
+    public class GetAllPlanets : IGetAllPlanets
+    {
         private readonly IPlanetRepository planetRepository;
 
         public GetAllPlanets(IPlanetRepository planetRepository)
-		{
+        {
             this.planetRepository = planetRepository;
         }
 
@@ -27,6 +27,6 @@ namespace Planets.Domain.UseCases
                 AdditionalInfo = planet.AdditionalInfo
             });
         }
-	}
+    }
 }
 

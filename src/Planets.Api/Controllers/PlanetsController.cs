@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Planets.Api.Models;
 using Planets.Domain.Models;
 
 namespace Planets.Api.Controllers;
@@ -15,7 +16,7 @@ public class PlanetsController : ControllerBase
     }
 
     [HttpGet(Name = "GetPlanets")]
-    public IEnumerable<string> Get()
+    public IEnumerable<DisplayPlanet> Get()
     {
         return new[] { "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
     }
