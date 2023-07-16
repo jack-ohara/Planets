@@ -50,7 +50,7 @@ namespace Infra
                 BillingMode = BillingMode.PAY_PER_REQUEST
             });
 
-            db.GrantReadWriteData(lambdaFunctionOne);
+            db.GrantReadData(lambdaFunctionOne);
 
             new CfnOutput(this, "apigwtarn", new CfnOutputProps { Value = restAPI.ArnForExecuteApi() });
         }

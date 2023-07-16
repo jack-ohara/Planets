@@ -4,7 +4,7 @@ using Planets.DataAccessLayer.Models;
 
 namespace Planets.DataAccessLayer.Repositories;
 
-public class PlanetRepository
+public class PlanetRepository : IPlanetRepository
 {
     private Table _table;
 
