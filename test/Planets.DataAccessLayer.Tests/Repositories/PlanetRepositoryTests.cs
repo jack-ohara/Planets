@@ -41,7 +41,7 @@ public class PlanetRepositoryTests : IClassFixture<DynamoDBTestFixture>, IAsyncL
     }
 
     [Fact]
-    public async Task GetAllPlanets_ShouldReturnAllPlanetsAsync()
+    public async Task GetAllPlanets_ShouldReturnAllPlanets()
     {
         var planets = new[]
         {
@@ -58,9 +58,8 @@ public class PlanetRepositoryTests : IClassFixture<DynamoDBTestFixture>, IAsyncL
         result.Should().BeEquivalentTo(planets);
     }
 
-    // What happens if the id isn't present?? Need a test
     [Fact]
-    public async Task GetPlanet_ShouldReturnAllInfoForPlanetAsync()
+    public async Task GetPlanet_ShouldReturnAllInfoForPlanet()
     {
         var planet = new PlanetBuilder().Build();
 
@@ -71,6 +70,16 @@ public class PlanetRepositoryTests : IClassFixture<DynamoDBTestFixture>, IAsyncL
         var result = await repo.GetPlanet(planet.ID);
 
         result.Should().BeEquivalentTo(planet);
+    }
+
+    [Fact]
+    public async Task GetPlanet_WithAnInvalidID_ShouldReturnNull()
+    {
+        var repo = new PlanetRepository(fixture.Db, _tableName);
+
+        var result = await repo.GetPlanet("does-not-exist");
+
+        result.Should().BeNull();
     }
 }
 
