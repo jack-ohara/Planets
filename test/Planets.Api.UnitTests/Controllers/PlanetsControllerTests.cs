@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Planets.Api.Controllers;
@@ -50,11 +51,16 @@ namespace Planets.Api.UnitTests.Controllers
                 },
             };
 
-            var controller = new PlanetsController(mockUseCase.Object, Mock.Of<ILogger<PlanetsController>>());
+            var controller = new PlanetsController(
+                mockUseCase.Object,
+                Mock.Of<IGetPlanet>(),
+                Mock.Of<ILogger<PlanetsController>>()
+            );
 
-            var result = await controller.Get();
+            var result = (await controller.Get()) as OkObjectResult;
 
-            result.Should().BeEquivalentTo(expected);
+            result.Should().NotBeNull();
+            result!.Value.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -79,9 +85,26 @@ namespace Planets.Api.UnitTests.Controllers
                 Mock.Of<ILogger<PlanetsController>>()
             );
 
-            var result = controller.GetPlanet("planet-1");
+            var result = await controller.GetPlanet("planet-1");
 
-            result.Should().BeEquivalentTo(planet);
+            result.Should().BeOfType<OkObjectResult>().Which.Value.Should().BeEquivalentTo(planet);
+        }
+
+        [Fact]
+        public async Task GetPlanet_WithAnInvalidID_ShouldReturnANotFoundResult()
+        {
+            var mockUseCase = new Mock<IGetPlanet>();
+            mockUseCase.Setup(x => x.Execute(It.IsAny<string>())).ReturnsAsync(() => null);
+
+            var controller = new PlanetsController(
+                Mock.Of<IGetAllPlanets>(),
+                mockUseCase.Object,
+                Mock.Of<ILogger<PlanetsController>>()
+            );
+
+            var result = await controller.GetPlanet("id");
+
+            result.Should().BeOfType<NotFoundResult>();
         }
     }
 }
