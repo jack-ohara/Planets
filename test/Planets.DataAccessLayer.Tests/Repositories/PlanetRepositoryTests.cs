@@ -1,10 +1,10 @@
 ﻿using Planets.DataAccessLayer.Repositories;
 using FluentAssertions;
-using Planets.DataAccessLayer.Tests.TestUtils;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
+using Planets.DataAccessLayer.IntegrationTests.TestUtils;
 
-namespace Planets.DataAccessLayer.Tests;
+namespace Planets.DataAccessLayer.IntegrationTests;
 
 public class PlanetRepositoryTests : IClassFixture<DynamoDBTestFixture>, IAsyncLifetime
 {

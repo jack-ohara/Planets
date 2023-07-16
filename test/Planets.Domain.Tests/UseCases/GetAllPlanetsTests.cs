@@ -3,7 +3,7 @@ using Planets.DataAccessLayer.Repositories;
 using Planets.Domain.UseCases;
 using FluentAssertions;
 
-namespace Planets.Domain.Tests.UseCases
+namespace Planets.Domain.UnitTests.UseCases
 {
 	public class GetAllPlanetsTests
 	{

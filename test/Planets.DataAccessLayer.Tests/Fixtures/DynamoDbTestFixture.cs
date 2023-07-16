@@ -2,7 +2,7 @@
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 
-namespace Planets.DataAccessLayer.Tests;
+namespace Planets.DataAccessLayer.IntegrationTests;
 
 
 public class DynamoDBTestFixture : IDisposable

@@ -17,9 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "infra\src\Infra\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Api", "src\Planets.Api\Planets.Api.csproj", "{69773CC3-33AC-4932-80B5-66C9941D6166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.DataAccessLayer.Tests", "test\Planets.DataAccessLayer.Tests\Planets.DataAccessLayer.Tests.csproj", "{04251136-7FEE-4823-A9C6-E1B1E8BFA838}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.DataAccessLayer.IntegrationTests", "test\Planets.DataAccessLayer.Tests\Planets.DataAccessLayer.IntegrationTests.csproj", "{04251136-7FEE-4823-A9C6-E1B1E8BFA838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Domain.Tests", "test\Planets.Domain.Tests\Planets.Domain.Tests.csproj", "{4B4ADCCF-1A9F-4457-A13F-314FDD838FDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planets.Domain.UnitTests", "test\Planets.Domain.Tests\Planets.Domain.UnitTests.csproj", "{4B4ADCCF-1A9F-4457-A13F-314FDD838FDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

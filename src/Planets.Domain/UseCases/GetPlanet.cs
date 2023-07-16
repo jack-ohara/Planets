@@ -12,11 +12,11 @@ namespace Planets.Domain.UseCases
             this.planetRepository = planetRepository;
         }
 
-        public async Task<Planet> Execute(string id)
+        public async Task<Planet?> Execute(string id)
         {
             var planet = await planetRepository.GetPlanet(id);
 
-            return new Planet
+            return planet is null ? null : new Planet
             {
                 ID = planet.ID,
                 Name = planet.Name,

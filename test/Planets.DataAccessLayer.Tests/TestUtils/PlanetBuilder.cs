@@ -1,6 +1,6 @@
 ﻿using Planets.DataAccessLayer.Models;
 
-namespace Planets.DataAccessLayer.Tests.TestUtils
+namespace Planets.DataAccessLayer.IntegrationTests.TestUtils
 {
     public class PlanetBuilder
     {

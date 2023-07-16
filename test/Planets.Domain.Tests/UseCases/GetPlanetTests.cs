@@ -3,7 +3,7 @@ using Moq;
 using Planets.DataAccessLayer.Repositories;
 using Planets.Domain.UseCases;
 
-namespace Planets.Domain.Tests.UseCases
+namespace Planets.Domain.UnitTests.UseCases
 {
     public class GetPlanetTests
     {
@@ -51,6 +51,17 @@ namespace Planets.Domain.Tests.UseCases
             var result = await useCase.Execute(id);
 
             result.Should().BeEquivalentTo(expected);
+        }
+
+        [Fact]
+        public async Task GetPlanet_WithAnInvalidID_ShouldReturnNull()
+        {
+            var mockPlanetsRepository = new Mock<IPlanetRepository>();
+            var useCase = new GetPlanet(mockPlanetsRepository.Object);
+
+            var result = await useCase.Execute("does-not-exist");
+
+            result.Should().BeNull();
         }
     }
 }

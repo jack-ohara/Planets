@@ -16,9 +16,6 @@ namespace Planets.Domain.UseCases
         {
             var allPlanets = await planetRepository.GetAllPlanets();
 
-            // We don't need to return all this for the GetAll endpoint,
-            // UI will only care about the ID and name (maybe image depending
-            // on implementation). Is that a controller or domain concern??
             return allPlanets.Select(planet => new Planet
             {
                 ID = planet.ID,
