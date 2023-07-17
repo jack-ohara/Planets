@@ -1,4 +1,8 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Amazon.DynamoDBv2;
+using Planets.DataAccessLayer.Repositories;
+using Planets.Domain.UseCases;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -7,6 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
+
+builder.Services.AddScoped<IGetAllPlanets, GetAllPlanets>();
+builder.Services.AddScoped<IGetPlanet, GetPlanet>();
+builder.Services.AddScoped<IPlanetRepository>(sp => new PlanetRepository(sp.GetRequiredService<IAmazonDynamoDB>(), Environment.GetEnvironmentVariable("TABLE_NAME")));
+builder.Services.AddScoped<IAmazonDynamoDB, AmazonDynamoDBClient>();
 
 var app = builder.Build();
 

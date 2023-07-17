@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Amazon.CDK;
 using Amazon.CDK.AWS.APIGateway;
 using Amazon.CDK.AWS.DynamoDB;
@@ -11,12 +12,24 @@ namespace Infra
     {
         internal PlanetsStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
+            var dynamoTable = new Table(this, "plantes-table", new TableProps
+            {
+                PartitionKey = new Attribute() { Name = "pk", Type = AttributeType.STRING },
+                SortKey = new Attribute() { Name = "sk", Type = AttributeType.STRING },
+                TableName = "planets-table",
+                BillingMode = BillingMode.PAY_PER_REQUEST
+            });
+
             var lambdaFunctionOne = new Function(this, "planets-api", new FunctionProps
             {
                 Runtime = Runtime.DOTNET_6,
                 MemorySize = 1024,
                 LogRetention = RetentionDays.ONE_DAY,
                 Handler = "Planets.Api",
+                Environment = new Dictionary<string, string>()
+                {
+                    ["TABLE_NAME"] = dynamoTable.TableName
+                },
                 Code = Code.FromAsset("../src/", new Amazon.CDK.AWS.S3.Assets.AssetOptions
                 {
                     Bundling = new BundlingOptions()
@@ -42,15 +55,7 @@ namespace Infra
                 Proxy = true,
             });
 
-            var db = new Table(this, "plantes-table", new TableProps
-            {
-                PartitionKey = new Attribute() { Name = "pk", Type = AttributeType.STRING },
-                SortKey = new Attribute() { Name = "sk", Type = AttributeType.STRING },
-                TableName = "planets-table",
-                BillingMode = BillingMode.PAY_PER_REQUEST
-            });
-
-            db.GrantReadData(lambdaFunctionOne);
+            dynamoTable.GrantReadData(lambdaFunctionOne);
 
             new CfnOutput(this, "apigwtarn", new CfnOutputProps { Value = restAPI.ArnForExecuteApi() });
         }
