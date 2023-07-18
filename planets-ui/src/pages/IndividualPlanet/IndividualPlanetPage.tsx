@@ -5,13 +5,15 @@ export function IndividualPlanetPage() {
   const { planet } = useLoaderData() as IndividualPlanetPageDataLoaderResponse;
 
   return (
-    <div>
-      <h2>{planet.name}</h2>
-      <img src={planet.imageUrl} />
-      <p>Distance to the sun: {planet.distanceToSunDisplayValue}</p>
-      <p>Diameter: {planet.diameterDisplayValue}</p>
-      <p>Mass: {planet.massDisplayValue}</p>
-      <p>{planet.additionalInfo}</p>
+    <div className="text-center flex flex-col">
+      <img className="grow basis-0 object-cover" src={planet.imageUrl} />
+      <div className="grow basis-0 flex flex-col justify-center gap-y-2">
+        <h2 className="text-3xl font-medium mb-2">{planet.name}</h2>
+        <p>Distance to the sun: {planet.distanceToSunDisplayValue}</p>
+        <p>Diameter: {planet.diameterDisplayValue}</p>
+        <p>Mass: {planet.massDisplayValue}</p>
+        <p>{planet.additionalInfo}</p>
+      </div>
     </div>
   );
 }

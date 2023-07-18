@@ -12,13 +12,14 @@ describe('homePageDataLoader', () => {
     const planets = [
       { id: 'mars', name: 'Mars' },
       { id: 'earth', name: 'Earth' },
+      { id: 'mercury', name: 'Mercury' },
     ];
 
     beforeEach(() => {
       fetchMocker.mockResponse(JSON.stringify(planets));
     });
 
-    it.only('should call the correct api', async () => {
+    it('should call the correct api', async () => {
       await homePageDataLoader();
 
       expect(fetchMocker).toHaveBeenLastCalledWith('https://mock-api.com/Planets');
@@ -27,7 +28,16 @@ describe('homePageDataLoader', () => {
     it('should return the deserialised planets', async () => {
       const result = await homePageDataLoader();
 
-      expect(result.planets).toEqual(planets);
+      expect(result.planets.length).toBe(planets.length);
+      expect(result.planets).toEqual(expect.arrayContaining(planets));
+    })
+
+    it('should order the planets based on distance from the sun', async () => {
+      const result = await homePageDataLoader();
+
+      expect(result.planets[0].id).toBe('mercury');
+      expect(result.planets[1].id).toBe('earth');
+      expect(result.planets[2].id).toBe('mars');
     })
   })
 
