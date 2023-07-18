@@ -1,3 +1,16 @@
+import { Link, useLoaderData } from "react-router-dom";
+import { HomePageDataLoaderResponse } from "./HomePageDataLoader";
+
 export function HomePage() {
-  return <div>Hello world!</div>;
+  const { planets } = useLoaderData() as HomePageDataLoaderResponse;
+
+  return (
+    <ul>
+      {planets.map((planet) => (
+        <li key={planet.id}>
+          <Link to={`/${planet.id}`}>{planet.name}</Link>
+        </li>
+      ))}
+    </ul>
+  );
 }
