@@ -17,6 +17,17 @@ builder.Services.AddScoped<IGetPlanet, GetPlanet>();
 builder.Services.AddScoped<IPlanetRepository>(sp => new PlanetRepository(sp.GetRequiredService<IAmazonDynamoDB>(), Environment.GetEnvironmentVariable("TABLE_NAME")));
 builder.Services.AddScoped<IAmazonDynamoDB, AmazonDynamoDBClient>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin();
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.AllowCredentials();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,3 +45,4 @@ app.MapControllers();
 
 app.Run();
 
+app.UseCors("AllowAllOrigins");

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Amazon.CDK;
-using Amazon.CDK.AWS.APIGateway;
 using Amazon.CDK.AWS.DynamoDB;
 using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.AWS.Logs;
@@ -49,15 +48,24 @@ namespace Infra
                 }),
             });
 
-            var restAPI = new LambdaRestApi(this, "planets-proxy-api", new LambdaRestApiProps
-            {
-                Handler = lambdaFunctionOne,
-                Proxy = true,
-            });
+            // I ended up having to add a HTTP api manually through the console
+            // because of a CORS error I didn't have time to properly understand
+
+            //var restAPI = new LambdaRestApi(this, "planets-proxy-api", new LambdaRestApiProps
+            //{
+            //    Handler = lambdaFunctionOne,
+            //    Proxy = true,
+            //    DefaultCorsPreflightOptions = new CorsOptions
+            //    {
+            //        AllowOrigins = Cors.ALL_ORIGINS,
+            //        AllowMethods = Cors.ALL_METHODS,
+            //        AllowCredentials = true,
+            //    },
+            //});
 
             dynamoTable.GrantReadData(lambdaFunctionOne);
 
-            new CfnOutput(this, "apigwtarn", new CfnOutputProps { Value = restAPI.ArnForExecuteApi() });
+            //new CfnOutput(this, "apigwarn", new CfnOutputProps { Value = restAPI.ArnForExecuteApi() });
         }
     }
 }
