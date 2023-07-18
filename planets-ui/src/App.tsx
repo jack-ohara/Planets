@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { HomePage, IndividualPlanetPage, Layout } from "./pages";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { homePageDataLoader } from "./pages/Home/HomePageDataLoader";
+import { homePageDataLoader } from "./pages/Home/homePageDataLoader";
+import { individualPlanetPageDataLoader } from "./pages/IndividualPlanet/individualPlanetPageDataLoader";
 
 function App() {
   const queryClient = new QueryClient({
@@ -20,7 +21,7 @@ function App() {
         },
         {
           path: ":planetId",
-          loader: ({ params }) => ({ first: 1, second: "Hello", params }),
+          loader: individualPlanetPageDataLoader,
           Component: IndividualPlanetPage,
         },
       ],

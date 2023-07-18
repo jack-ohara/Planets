@@ -1,4 +1,4 @@
-import { describe, it, vi } from "vitest";
+import { vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { HomePage } from "..";
 import { PropsWithChildren } from "react";

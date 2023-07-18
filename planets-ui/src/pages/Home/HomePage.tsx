@@ -1,5 +1,5 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { HomePageDataLoaderResponse } from "./HomePageDataLoader";
+import { HomePageDataLoaderResponse } from "./homePageDataLoader";
 
 export function HomePage() {
   const { planets } = useLoaderData() as HomePageDataLoaderResponse;
