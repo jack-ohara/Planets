@@ -37,7 +37,9 @@ In order to point at the relevant backend, the ui expects an environment variabl
 
 ## Deployment
 
-The deployment of the app is managed through the AWS CDK. You first need to produce a production build of the ui before the full stack can be deployed (this would normally be handled in a pipeline)
+In order to deploy this app you will need to have the AWS CDK v2 installed.
+
+You first need to produce a production build of the ui before the full stack can be deployed (this would normally be handled in a pipeline)
 
 ```bash
 cd planets-ui
