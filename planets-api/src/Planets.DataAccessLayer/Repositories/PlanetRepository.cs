@@ -6,15 +6,19 @@ namespace Planets.DataAccessLayer.Repositories;
 
 public class PlanetRepository : IPlanetRepository
 {
+    private readonly IAmazonDynamoDB client;
     private Table _table;
 
     public PlanetRepository(IAmazonDynamoDB client, string tableName)
     {
-        _table = Table.LoadTable(client, tableName);
+        this.client = client;
+        //_table = Table.LoadTable(client, tableName);
     }
 
     public async Task<IEnumerable<Planet>> GetAllPlanets()
     {
+        var tables = await client.ListTablesAsync();
+        
         var query = new QueryFilter("pk", QueryOperator.Equal, "planet/list");
 
         var search = _table.Query(query);

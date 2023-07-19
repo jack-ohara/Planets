@@ -73,13 +73,13 @@ namespace Infra
 
             var uiS3Bucket = new Bucket(this, "planets-ui-bucket", new BucketProps
             {
-                AccessControl = BucketAccessControl.PRIVATE
+                AccessControl = BucketAccessControl.PRIVATE,
             });
 
             new BucketDeployment(this, "planets-ui-bucket-deployment", new BucketDeploymentProps
             {
                 DestinationBucket = uiS3Bucket,
-                Sources = new[] { Source.Asset("../../planets-ui/dist") }
+                Sources = new[] { Source.Asset("../../planets-ui/dist") },
             });
 
             var originAccessIdentity = new OriginAccessIdentity(this, "origin-access-identity");
@@ -91,7 +91,7 @@ namespace Infra
                 DefaultBehavior = new BehaviorOptions
                 {
                     Origin = new S3Origin(uiS3Bucket, new S3OriginProps { OriginAccessIdentity = originAccessIdentity })
-                } 
+                },
             });
         }
     }
